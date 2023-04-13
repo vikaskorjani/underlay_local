@@ -1,0 +1,148 @@
+ERROR: Remove Gerrit Change-Id's before submitting upstream
+#7: 
+Change-Id: Ic7c6c03cfc7da5f1a7995bb0e99e63ea6ed74d93
+
+WARNING: Block comments use a trailing */ on a separate line
+#100: FILE: libweston/backend-drm/drm.c:1692:
++	 * part of create_sprites. */
+
+WARNING: Block comments use a trailing */ on a separate line
+#220: FILE: libweston/backend-drm/state-propose.c:533:
++		 * scanout plane. */
+
+WARNING: Block comments use a trailing */ on a separate line
+#259: FILE: libweston/backend-drm/state-propose.c:572:
++				 * scanout plane, not overlay */
+
+WARNING: quoted string split across lines
+#308: FILE: libweston/backend-drm/state-propose.c:729:
++			drm_debug(b, "\t\t[state] using renderer FB ID %lu for mixed "
++					"mode for output %s (%lu)\n",
+
+WARNING: Block comments should align the * on each line
+#317: FILE: libweston/backend-drm/state-propose.c:738:
++   /*
++	* Using underlay composition strategy
+
+WARNING: braces {} are not necessary for single statement blocks
+#320: FILE: libweston/backend-drm/state-propose.c:741:
++	if (mode == DRM_OUTPUT_PROPOSE_STATE_MIXED_UNDERLAY) {
++		output->scanout_plane = output->overlay_plane;
+ 	}
+
+ERROR: code indent should use tabs where possible
+#330: FILE: libweston/backend-drm/state-propose.c:887:
++            if (mode == DRM_OUTPUT_PROPOSE_STATE_MIXED_UNDERLAY &&$
+
+WARNING: please, no spaces at the start of a line
+#330: FILE: libweston/backend-drm/state-propose.c:887:
++            if (mode == DRM_OUTPUT_PROPOSE_STATE_MIXED_UNDERLAY &&$
+
+WARNING: suspect code indent for conditional statements (12, 32)
+#330: FILE: libweston/backend-drm/state-propose.c:887:
++            if (mode == DRM_OUTPUT_PROPOSE_STATE_MIXED_UNDERLAY &&
+[...]
++				underlay_view_assigned_to_primary = true;
+
+WARNING: quoted string split across lines
+#346: FILE: libweston/backend-drm/state-propose.c:931:
++		drm_debug(b, "\t\t [view] failing state generation: "
++				 "underlay no view assigned to primary \n");
+
+WARNING: unnecessary whitespace before a quoted newline
+#346: FILE: libweston/backend-drm/state-propose.c:931:
++				 "underlay no view assigned to primary \n");
+
+WARNING: quoted string split across lines
+#390: FILE: libweston/backend-drm/state-propose.c:1003:
+ 			drm_debug(b, "\t[repaint] could not build planes-only "
++				     "state, trying underlay\n");
+
+WARNING: Block comments use a trailing */ on a separate line
+#443: FILE: libweston/renderer-gl/gl-renderer.c:1092:
++			 * Finally translate the opaque region back to surface-local coordinates.*/
+
+WARNING: line length of 104 exceeds 100 columns
+#469: FILE: libweston/renderer-gl/gl-renderer.c:1124:
++repaint_views(struct weston_output *output, pixman_region32_t *damage, pixman_region32_t *underlay_rect)
+
+ERROR: space required before the open parenthesis '('
+#500: FILE: libweston/renderer-gl/gl-renderer.c:1673:
++		if(pnode->view->is_underlay) {
+
+WARNING: braces {} are not necessary for single statement blocks
+#500: FILE: libweston/renderer-gl/gl-renderer.c:1673:
++		if(pnode->view->is_underlay) {
++			pixman_region32_union(&underlay_rect, &underlay_rect, &pnode->view->transform.boundingbox);
++		}
+
+WARNING: line length of 115 exceeds 100 columns
+#501: FILE: libweston/renderer-gl/gl-renderer.c:1674:
++			pixman_region32_union(&underlay_rect, &underlay_rect, &pnode->view->transform.boundingbox);
+
+ERROR: trailing whitespace
+#504: FILE: libweston/renderer-gl/gl-renderer.c:1677:
++^I$
+
+WARNING: line length of 101 exceeds 100 columns
+#505: FILE: libweston/renderer-gl/gl-renderer.c:1678:
++	/* Underlay: Once underlay region is detected we will prevent renderer to draw in that region
+
+WARNING: line length of 101 exceeds 100 columns
+#506: FILE: libweston/renderer-gl/gl-renderer.c:1679:
++	 * this step ensures that stale content is cleaned up and content on primary plane is visible
+
+ERROR: that open brace { should be on the previous line
+#508: FILE: libweston/renderer-gl/gl-renderer.c:1681:
++	if (pixman_region32_not_empty(&underlay_rect))
++	{
+
+WARNING: Missing a blank line after declarations
+#512: FILE: libweston/renderer-gl/gl-renderer.c:1685:
++		pixman_box32_t *b;
++		b = pixman_region32_rectangles(&underlay_rect, &i);
+
+ERROR: that open brace { should be on the previous line
+#514: FILE: libweston/renderer-gl/gl-renderer.c:1687:
++		for (int j =0; j<i; j++)
++		{
+
+ERROR: spaces required around that '=' (ctx:WxV)
+#514: FILE: libweston/renderer-gl/gl-renderer.c:1687:
++		for (int j =0; j<i; j++)
+ 		           ^
+
+ERROR: spaces required around that '<' (ctx:VxV)
+#514: FILE: libweston/renderer-gl/gl-renderer.c:1687:
++		for (int j =0; j<i; j++)
+ 		                ^
+
+WARNING: line length of 108 exceeds 100 columns
+#517: FILE: libweston/renderer-gl/gl-renderer.c:1690:
++			/* Arguments are, window cordinates (x, y) left corner of screen, width and height*/
+
+WARNING: line length of 110 exceeds 100 columns
+#518: FILE: libweston/renderer-gl/gl-renderer.c:1691:
++			glScissor(b[j].x1, output->height - b[j].y2, (b[j].x2- b[j].x1), (b[j].y2 - b[j].y1));
+
+ERROR: need consistent spacing around '-' (ctx:VxW)
+#518: FILE: libweston/renderer-gl/gl-renderer.c:1691:
++			glScissor(b[j].x1, output->height - b[j].y2, (b[j].x2- b[j].x1), (b[j].y2 - b[j].y1));
+ 			                                                     ^
+
+WARNING: space prohibited between function name and open parenthesis '('
+#520: FILE: libweston/renderer-gl/gl-renderer.c:1693:
++			glClear (GL_COLOR_BUFFER_BIT);
+
+total: 9 errors, 21 warnings, 488 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+NOTE: Whitespace errors detected.
+      You may wish to use scripts/cleanpatch or scripts/cleanfile
+
+0001-Changes-will-enable-underlay-MPO-comsposition-strate.patch has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.

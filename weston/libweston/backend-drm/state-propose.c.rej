@@ -1,0 +1,18 @@
+--- libweston/backend-drm/state-propose.c
++++ libweston/backend-drm/state-propose.c
+@@ -968,6 +968,15 @@ drm_output_propose_state(struct weston_output *output_base,
+ 			force_renderer = true;
+ 		}
+ 
++		/* In underlay-mode of composition subsurface should not be allocated to plane.
++		*/
++		if (mode == DRM_OUTPUT_PROPOSE_STATE_MIXED_UNDERLAY && strcmp(ev->surface->role_name, "wl_subsurface") == 0)
++		{
++			drm_debug(b, "\t\t\t\t[view] not assigning view %p to plane "
++					 "(Underlay mode only main surface is assigned to plane)");
++			force_renderer = true;
++		}
++
+ 		/* Now try to place it on a plane if we can. */
+ 		if (!force_renderer) {
+ 			drm_debug(b, "\t\t\t[plane] started with zpos %"PRIu64"\n",
